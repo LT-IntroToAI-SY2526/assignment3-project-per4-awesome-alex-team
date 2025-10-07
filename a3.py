@@ -10,10 +10,18 @@ from typing import List, Tuple, Callable, Any
 
 # main code
 def define(matches: List[str]) -> List[str]:
-    word = 
+    result = []
+    word = matches[0]
+    meaning = dictionary_data.get(word)
+    if meaning:
+        result.append(f"{word}: {meaning}")
+    else:
+        print("Sorry, that word is not in the dictionary.")
+    return result
 
 # asserts
 if __name__ == "__main__":
-    assert define(["woolsey"]) == ["Linsey-woolsey."], "failed define test"
+    assert define(["woolsey"]) == ["woolsey: Linsey-woolsey."], "failed define 'woolsey'"
+    assert define(["broadwise"]) == ["broadwise: Breadthwise. [Archaic]"], "failed define 'broadwise'"
 
     print("all tests passed!")
