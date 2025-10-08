@@ -23,5 +23,6 @@ def define(matches: List[str]) -> List[str]:
 if __name__ == "__main__":
     assert define(["woolsey"]) == ["woolsey: Linsey-woolsey."], "failed define 'woolsey'"
     assert define(["broadwise"]) == ["broadwise: Breadthwise. [Archaic]"], "failed define 'broadwise'"
+    assert define(["broadwise"]) == ["broadwise: Breadthwise. [Archaic]"], "failed define 'broadwise'"
 
     print("all tests passed!")
