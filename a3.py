@@ -1,5 +1,6 @@
 # import dictionary database JSON file
 import json
+import random
 
 with open("dictionary.json", "r", encoding="utf-8") as file:
     dictionary_data = json.load(file)
@@ -18,11 +19,18 @@ def meaning_by_word(matches: List[str]) -> List[str]:
     else:
         print("Sorry, that word is not in the dictionary.")
     return result
+def count_vowels(word: str) -> int:
+    vowels = "aeiouAEIOU"
+    return sum(1 for char in word if char in vowels)
+def get_random_word() -> str:
+    # dictionary_data is your loaded dictionary (a dict)
+    return random.choice(list(dictionary_data.keys()))
+
 
 # The pattern-action list for the natural language query system A list of tuples of
 # pattern and action It must be declared here, after all of the function definitions
 pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
-    (str.split("define _"), define),
+    (str.split("define _"), meaning_by_word),
 ]
 
 def search_pa_list(src: List[str]) -> List[str]:
@@ -62,31 +70,27 @@ def query_loop() -> None:
             break
 
     print("\nSo long!\n")
-asserts
-
-
-
-
-
-
-
-
-
-
-
-
-if __name__ == "__main__":
-    assert meaning_by_word(["woolsey"]) == ["woolsey: Linsey-woolsey."], "failed define 'woolsey'"
-    assert meaning_by_word(["broadwise"]) == ["broadwise: Breadthwise. [Archaic]"], "failed define 'broadwise'"
-    assert define(["broadwise"]) == ["broadwise: Breadthwise. [Archaic]"], "failed define 'broadwise'"
-
-    print("all tests passed!")
 
     pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
     (str.split("what does % mean"), meaning_by_word),
     (str.split("what is the meaning of the word _"), meaning_by_word),
     (str.split("what is the definition of _"), meaning_by_word),
     (str.split("can you explain _"), meaning_by_word),
-  #  (str.split("what word means _"), word_by_meaning),
-   # (str.split("what is the word that means"), word_by_meaning),
+#  (str.split("what word means _"), word_by_meaning),
+# (str.split("what is the word that means"), word_by_meaning),
 ]
+    
+#asserts
+if __name__ == "__main__":
+    assert meaning_by_word(["woolsey"]) == ["woolsey: Linsey-woolsey."], "failed define 'woolsey'"
+    assert meaning_by_word(["broadwise"]) == ["broadwise: Breadthwise. [Archaic]"], "failed define 'broadwise'"
+    assert meaning_by_word(["broadwise"]) == ["broadwise: Breadthwise. [Archaic]"], "failed define 'broadwise'"
+
+    print("all tests passed!")
+while True:
+    word = input("Enter word(/help for other commands): ")
+    if word == "/help":
+        print("!random - Gives you a random word\n!hangman - Play hangman with the chatbot\n!Guess - Guess the word by its meaning")
+    elif word == "!random":
+         print(get_random_word())
+
