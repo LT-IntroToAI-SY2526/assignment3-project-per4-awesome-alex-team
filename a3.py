@@ -23,7 +23,7 @@ def meaning_by_word(matches: List[str]) -> List[str]:
 # The pattern-action list for the natural language query system A list of tuples of
 # pattern and action It must be declared here, after all of the function definitions
 pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
-    (str.split("define _"), define),
+    (str.split("define _"), meaning_by_word),
 ]
 
 def search_pa_list(src: List[str]) -> List[str]:
@@ -63,12 +63,11 @@ def query_loop() -> None:
             break
 
     print("\nSo long!\n")
-asserts
 
 if __name__ == "__main__":
     assert meaning_by_word(["woolsey"]) == ["woolsey: Linsey-woolsey."], "failed define 'woolsey'"
     assert meaning_by_word(["broadwise"]) == ["broadwise: Breadthwise. [Archaic]"], "failed define 'broadwise'"
-    assert define(["broadwise"]) == ["broadwise: Breadthwise. [Archaic]"], "failed define 'broadwise'"
+    
 
     print("all tests passed!")
 
@@ -77,8 +76,8 @@ if __name__ == "__main__":
     (str.split("what is the meaning of the word _"), meaning_by_word),
     (str.split("what is the definition of _"), meaning_by_word),
     (str.split("can you explain _"), meaning_by_word),
-    (str.split("what word means _"), word_by_meaning),
-    (str.split("what is the word that means"), word_by_meaning),
+    #(str.split("what word means _"), word_by_meaning),
+    #(str.split("what is the word that means"), word_by_meaning),
 ]
     
 #asserts
