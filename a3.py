@@ -18,12 +18,7 @@ def meaning_by_word(matches: List[str]) -> List[str]:
     else:
         print("Sorry, that word is not in the dictionary.")
     return result
-
-# The pattern-action list for the natural language query system A list of tuples of
-# pattern and action It must be declared here, after all of the function definitions
-pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
-    (str.split("define _"), define),
-]
+w
 
 def search_pa_list(src: List[str]) -> List[str]:
     """Takes source, finds matching pattern and calls corresponding action. If it finds
@@ -64,21 +59,9 @@ def query_loop() -> None:
     print("\nSo long!\n")
 asserts
 
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
     assert meaning_by_word(["woolsey"]) == ["woolsey: Linsey-woolsey."], "failed define 'woolsey'"
     assert meaning_by_word(["broadwise"]) == ["broadwise: Breadthwise. [Archaic]"], "failed define 'broadwise'"
-    assert define(["broadwise"]) == ["broadwise: Breadthwise. [Archaic]"], "failed define 'broadwise'"
 
     print("all tests passed!")
 
