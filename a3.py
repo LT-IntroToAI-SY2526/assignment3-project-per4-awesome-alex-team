@@ -24,6 +24,9 @@ def get_random_word() -> str:
     """Return a random word from the dictionary."""
     return random.choice(list(dictionary_data.keys()))
 
+def guess_game():
+    """Starts guess game"""
+
 # The pattern-action list for the natural language query system A list of tuples of
 # pattern and action It must be declared here, after all of the function definitions
 pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
@@ -83,26 +86,18 @@ if __name__ == "__main__":
     assert meaning_by_word(["broadwise"]) == ["broadwise: Breadthwise. [Archaic]"], "failed define 'broadwise'"
 
     print("all tests passed!")
+    
 while True:
     word = input("Enter word(/help for other commands): ")
-    print(meaning_by_word([word]))
-
-    #if "!" in word:
-    #    if word.lower() == "!random":
-    #        temp = get_random_word()
-    #        print(temp + "\n" + get_random_word(temp))
-    #    elif word.lower() == "!guess":
-    #        guessActive = True
-    #        rWord = get_random_word() #Edit the function to only return the definition if the user enters this command
-    #       while guessActive == True:
-    #            print(meaning_by_word(rWord))
-    #            user = input("Guess the word: ")
-    #            if user.lower() == rWord:
-    #                    print("Correct")
-    #                    guessActive = False
-    #            else:
-    #                    print("Incorrect")
-    #else:
+    if "/" in word:
+        print("!random - Gives you a random word\n!hangman - Play hangman with the chatbot\n!Guess - Guess the word by its meaning")
+    elif "!" in word:
+        if word.lower() == "!random":
+            print(get_random_word())
+        if word.lower() == "!guess":
+            guess_game()
+    else:        
+        print(meaning_by_word([word]))
 
 #Dont delete:
   #  if word == "/help":
