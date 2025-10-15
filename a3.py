@@ -44,8 +44,9 @@ def search_pa_list(src: List[str]) -> List[str]:
             answer = act(mat)
             return answer if answer else ["Sorry, that word is not in the dictionary"]
     return ["I don't understand"]
-
-
+def get_random_word() -> str:
+    """Return a random word from the dictionary."""
+    return random.choice(list(dictionary_data.keys()))
 def query_loop() -> None:
     """The simple query loop. The try/except structure is to catch Ctrl-C or Ctrl-D
     characters and exit gracefully.
