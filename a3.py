@@ -90,30 +90,7 @@ if __name__ == "__main__":
     print("all tests passed!")
 while True:
     word = input("Enter word(/help for other commands): ")
-    print(meaning_by_word([word]))
-
-    #if "!" in word:
-    #    if word.lower() == "!random":
-    #        temp = get_random_word()
-    #        print(temp + "\n" + get_random_word(temp))
-    #    elif word.lower() == "!guess":
-    #        guessActive = True
-    #        rWord = get_random_word() #Edit the function to only return the definition if the user enters this command
-    #       while guessActive == True:
-    #            print(meaning_by_word(rWord))
-    #            user = input("Guess the word: ")
-    #            if user.lower() == rWord:
-    #                    print("Correct")
-    #                    guessActive = False
-    #            else:
-    #                    print("Incorrect")
-    #else:
-
-#Dont delete:
-  #  if word == "/help":
-   #     print("!random - Gives you a random word\n!hangman - Play hangman with the chatbot\n!Guess - Guess the word by its meaning")
-    #elif word == "!random":
-     #    print(get_random_word())
-
-#Can someone finish the other two functions
-
+    if "!" in word:
+        print("success")
+    else:
+        print(meaning_by_word([word]))
