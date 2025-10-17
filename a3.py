@@ -20,6 +20,13 @@ def meaning_by_word(matches: List[str]) -> List[str]:
         print("Sorry, that word is not in the dictionary.")
     return result
 
+def get_random_word() -> str:
+    """Return a random word from the dictionary."""
+    return random.choice(list(dictionary_data.keys()))
+
+def guess_game():
+    """Starts guess game"""
+
 # The pattern-action list for the natural language query system A list of tuples of
 # pattern and action It must be declared here, after all of the function definitions
 pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
@@ -44,9 +51,7 @@ def search_pa_list(src: List[str]) -> List[str]:
             answer = act(mat)
             return answer if answer else ["Sorry, that word is not in the dictionary"]
     return ["I don't understand"]
-def get_random_word() -> str:
-    """Return a random word from the dictionary."""
-    return random.choice(list(dictionary_data.keys()))
+
 def query_loop() -> None:
     """The simple query loop. The try/except structure is to catch Ctrl-C or Ctrl-D
     characters and exit gracefully.
@@ -65,20 +70,13 @@ def query_loop() -> None:
 
     print("\nSo long!\n")
 
-if __name__ == "__main__":
-    assert meaning_by_word(["woolsey"]) == ["woolsey: Linsey-woolsey."], "failed define 'woolsey'"
-    assert meaning_by_word(["broadwise"]) == ["broadwise: Breadthwise. [Archaic]"], "failed define 'broadwise'"
-    
-
-    print("all tests passed!")
-
-    pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
-    (str.split("what does % mean"), meaning_by_word),
-    (str.split("what is the meaning of the word _"), meaning_by_word),
-    (str.split("what is the definition of _"), meaning_by_word),
-    (str.split("can you explain _"), meaning_by_word),
-    #(str.split("what word means _"), word_by_meaning),
-    #(str.split("what is the word that means"), word_by_meaning),
+pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
+(str.split("what does % mean"), meaning_by_word),
+(str.split("what is the meaning of the word _"), meaning_by_word),
+(str.split("what is the definition of _"), meaning_by_word),
+(str.split("can you explain _"), meaning_by_word),
+#(str.split("what word means _"), word_by_meaning),
+#(str.split("what is the word that means"), word_by_meaning),
 ]
     
 #asserts
@@ -88,9 +86,41 @@ if __name__ == "__main__":
     assert meaning_by_word(["broadwise"]) == ["broadwise: Breadthwise. [Archaic]"], "failed define 'broadwise'"
 
     print("all tests passed!")
+    
 while True:
     word = input("Enter word(/help for other commands): ")
-    if "!" in word:
-        print("success")
-    else:
+    if "/" in word:
+        print("!random - Gives you a random word\n!hangman - Play hangman with the chatbot\n!Guess - Guess the word by its meaning")
+    elif "!" in word:
+        if word.lower() == "!random":
+            print(get_random_word())
+        if word.lower() == "!guess":
+            guess_game()
+    else:        
         print(meaning_by_word([word]))
+
+    #if "!" in word:
+    #    if word.lower() == "!random":
+    #        temp = get_random_word()
+    #        print(temp + "\n" + get_random_word(temp))
+    #    elif word.lower() == "!guess":
+    #        guessActive = True
+    #        rWord = get_random_word() #Edit the function to only return the definition if the user enters this command
+    #       while guessActive == True:
+    #            print(meaning_by_word(rWord))
+    #            user = input("Guess the word: ")
+    #            if user.lower() == rWord:
+    #                    print("Correct")
+    #                    guessActive = False
+    #            else:
+    #                    print("Incorrect")
+    #else:
+
+#Dont delete:
+  #  if word == "/help":
+   #     print("!random - Gives you a random word\n!hangman - Play hangman with the chatbot\n!Guess - Guess the word by its meaning")
+    #elif word == "!random":
+     #    print(get_random_word())
+
+#Can someone finish the other two functions
+
