@@ -145,15 +145,6 @@ def query_loop() -> None:
 
     print("\nSo long!\n")
 
-pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
-(str.split("what does % mean"), meaning_by_word),
-(str.split("what is the meaning of the word _"), meaning_by_word),
-(str.split("what is the definition of _"), meaning_by_word),
-(str.split("can you explain _"), meaning_by_word),
-#(str.split("what word means _"), word_by_meaning),
-#(str.split("what is the word that means"), word_by_meaning),
-]
-    
 #asserts
 if __name__ == "__main__":
     assert meaning_by_word(["woolsey"]) == ["woolsey: Linsey-woolsey."], "failed define 'woolsey'"
