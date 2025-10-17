@@ -26,6 +26,20 @@ def get_random_word() -> str:
 
 def guess_game():
     """Starts guess game"""
+    word, definition = random.choice(list(dictionary_data.items()))
+    
+    print("Guess the word based on the following definition:")
+    print(definition)
+    
+    # Get user input
+    user_guess = input("\nYour guess: ").strip().lower()
+    
+    # Check if the guess is correct
+    if user_guess == word.lower():
+        print("Correct! Well done.")
+    else:
+        print(f"Wrong. The correct word was '{word}'.")
+
 def hangman():
     word = get_random_word().lower()
     guessed = set()
