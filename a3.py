@@ -26,6 +26,20 @@ def get_random_word() -> str:
 
 def guess_game():
     """Starts guess game"""
+    # Pick a random word and its definition
+    word, definition = random.choice(list(dictionary_data.items()))
+    
+    print("Guess the word based on the following definition:")
+    print(definition)
+    
+    # Get user input
+    user_guess = input("\nYour guess: ").strip().lower()
+    
+    # Check if the guess is correct
+    if user_guess == word.lower():
+        print("Correct! Well done.")
+    else:
+        print(f"Wrong. The correct word was '{word}'.")
 
 # The pattern-action list for the natural language query system A list of tuples of
 # pattern and action It must be declared here, after all of the function definitions
@@ -90,7 +104,7 @@ if __name__ == "__main__":
 while True:
     word = input("Enter word(/help for other commands): ")
     if "/" in word:
-        print("!random - Gives you a random word\n!hangman - Play hangman with the chatbot\n!Guess - Guess the word by its meaning")
+        print("!random - Gives you a random word\n!hangman - Play hangman with the chatbot\n!guess - Guess the word by its meaning")
     elif "!" in word:
         if word.lower() == "!random":
             print(get_random_word())
