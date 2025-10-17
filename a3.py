@@ -26,6 +26,45 @@ def get_random_word() -> str:
 
 def guess_game():
     """Starts guess game"""
+def hangman():
+    word = get_random_word().lower()
+    guessed = set()
+    attempts = 6
+    display = ["_" for _ in word]
+
+    print("Welcome to Hangman!")
+    print("Guess the word, one letter at a time.")
+
+    while attempts > 0 and "_" in display:
+        print("\nWord:", " ".join(display))
+        print(f"Guessed letters: {', '.join(sorted(guessed))}")
+        print(f"Attempts left: {attempts}")
+        guess = input("Your guess: ").lower()
+
+        if not guess.isalpha() or len(guess) != 1:
+            print("Please enter a single alphabetic character.")
+            continue
+
+        if guess in guessed:
+            print("You've already guessed that letter.")
+            continue
+
+        guessed.add(guess)
+
+        if guess in word:
+            for i, letter in enumerate(word):
+                if letter == guess:
+                    display[i] = guess
+            print("Good guess!")
+        else:
+            attempts -= 1
+            print("Wrong guess!")
+
+    if "_" not in display:
+        print(f"\n🎉 You won! The word was '{word}'.")
+    else:
+        print(f"\n😢 You lost. The word was '{word}'.")
+
 
 # The pattern-action list for the natural language query system A list of tuples of
 # pattern and action It must be declared here, after all of the function definitions
@@ -96,5 +135,7 @@ while True:
             print(get_random_word())
         if word.lower() == "!guess":
             guess_game()
+        if word.lower() == "!hangman":
+            hangman()
     else:        
         print(meaning_by_word([word]))
