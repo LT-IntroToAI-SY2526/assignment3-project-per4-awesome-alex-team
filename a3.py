@@ -129,7 +129,7 @@ if __name__ == "__main__":
 while True:
     word = input("Enter word(/help for other commands): ")
     if "/" in word:
-        print("!random - Gives you a random word\n!hangman - Play hangman with the chatbot\n!Guess - Guess the word by its meaning")
+        print("!random - Gives you a random word\n!hangman - Play hangman with the chatbot\n!guess - Guess the word by its meaning")
     elif "!" in word:
         if word.lower() == "!random":
             print(get_random_word())
