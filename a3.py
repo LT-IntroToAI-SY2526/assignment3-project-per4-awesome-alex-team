@@ -99,11 +99,4 @@ while True:
     else:        
         print(meaning_by_word([word]))
 
-#Dont delete:
-  #  if word == "/help":
-   #     print("!random - Gives you a random word\n!hangman - Play hangman with the chatbot\n!Guess - Guess the word by its meaning")
-    #elif word == "!random":
-     #    print(get_random_word())
-
-#Can someone finish the other two functions
 
