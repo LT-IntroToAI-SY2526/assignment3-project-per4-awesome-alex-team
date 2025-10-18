@@ -152,13 +152,10 @@ if __name__ == "__main__":
     assert meaning_by_word(["broadwise"]) == ["broadwise: Breadthwise. [Archaic]"], "failed define 'broadwise'"
 
     print("all tests passed!")
-    print("""
-                                                                                                                                                                                                                                                          
-""")
 
 while True:
     word = input("Enter word(/help for other commands): ")
-    if "/" in word:
+    if "!" in word:
         print("!random - Gives you a random word\n!hangman - Play hangman with the chatbot\n!guess - Guess the word by its meaning")
     elif "!" in word:
         if word.lower() == "!random":
